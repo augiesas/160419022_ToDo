@@ -21,8 +21,9 @@ class TodoListFragment : Fragment() {
     private lateinit var viewModel: ListTodoViewModel
     private var todoListAdapter:TodoListAdapter = TodoListAdapter(arrayListOf(), { item -> doClick(item) })
 
-    fun doClick(item:Any){
-        viewModel.clearTask(item as Todo)
+    fun doClick(item:Int){
+        viewModel.update(1,item)
+        activity?.recreate()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,7 @@ class TodoListFragment : Fragment() {
         viewModel.refresh()
         recViewTodo.layoutManager = LinearLayoutManager(context)
         recViewTodo.adapter = todoListAdapter
+
 
         fabAddTodo.setOnClickListener{
             val action = TodoListFragmentDirections.actionCreateTodo()
