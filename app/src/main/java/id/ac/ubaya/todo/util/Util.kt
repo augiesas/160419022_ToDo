@@ -24,5 +24,8 @@ val MIGRATION_1_2 = object: Migration(1,2){
 val MIGRATION_2_3 = object: Migration(2,3){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("ALTER TABLE todo ADD COLUMN is_done INTEGER DEFAULT 0 NOT NULL")
+        // Karena pada mysql tidak ada yang namanya boolean yang ada adalah TINYINT
+        // yang mana sama seperti INT tetapi memiliki range yang lebih kecil yaitu hanya 0 dan 1
+        // sehingga menggunakan INTEGER tidak masalah
     }
 }
