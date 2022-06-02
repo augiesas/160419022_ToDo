@@ -18,7 +18,7 @@ import androidx.room.*
         suspend fun update(title:String, notes:String, priority:Int, uuid:Int)
 
         @Query("UPDATE todo SET is_done=:isdone WHERE uuid=:uuid")
-        suspend fun updateDone(isdone:Int, uuid:Int)
+        suspend fun updateDone(isdone:Int, uuid: Int)
 
         @Delete
         suspend fun deleteTodo(todo: Todo)
